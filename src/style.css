@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+:root {
+  /* COLORS */
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-cool-gray: hsl(231, 11%, 63%);
+  --clr-light-gray: hsl(229, 24%, 87%);
+  --clr-magnolia: hsl(217, 100%, 97%);
+  --clr-albaster: hsl(231, 100%, 99%);
+
+  --clr-marine-blue: hsl(213, 96%, 18%);
+  --clr-purplish-blue: hsl(243, 100%, 62%);
+  --clr-pastel-blue: hsl(228, 100%, 84%);
+  --clr-light-blue: hsl(206, 94%, 87%);
+  --clr-strawberry-red: hsl(354, 84%, 57%);
+
+  /* FONT */
+  --p-size-l: 16px;
+  --p-size-m: 14px;
+  --p-size-s: 12px;
+  --weight-1: 400;
+  --weight-2: 500;
+  --weight-3: 700;
+  --h1-size: 32px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+h1 {
+  color: var(--clr-marine-blue);
+  font-size: var(--h1-size);
+  font-weight: var(--weight-3);
+  letter-spacing: 1px;
+}
+
+.legend {
+  font-size: var(--p-size-l);
+  color: var(--clr-cool-gray);
+  font-weight: var(--weight-2);
+}
+
+#submit-btn {
+  color: var(--clr-white);
+  font-size: var(--p-size-l);
+  font-weight: var(--weight-3);
+  background-color: var(--clr-marine-blue);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+}
+
+#submit-btn:hover {
+  background-color: var(--clr-purplish-blue);
+}
+
+.err-msg {
+  color: var(--clr-strawberry-red);
+  font-size: var(--p-size-m);
+  font-weight: var(--weight-3);
+}
