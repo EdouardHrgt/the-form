@@ -46,6 +46,12 @@ h1 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  font-size: var(--p-size-l);
+  font-weight: var(--weight-3);
+  color: var(--clr-marine-blue);
+}
+
 .legend {
   font-size: var(--p-size-l);
   color: var(--clr-cool-gray);
@@ -53,20 +59,33 @@ h1 {
   margin-bottom: 1rem;
 }
 
-#submit-btn {
-  color: var(--clr-white);
+#submit-btn,
+#back-btn {
   font-size: var(--p-size-l);
   font-weight: var(--weight-3);
-  background-color: var(--clr-marine-blue);
   border: none;
   border-radius: 0.5rem;
   padding: 0.95rem 1.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 #submit-btn:hover {
   background-color: var(--clr-purplish-blue);
+}
+#back-btn:hover {
+  background-color: var(--clr-light-gray);
+  color: var(--clr-white);
+}
+
+#submit-btn {
+  background-color: var(--clr-marine-blue);
+  color: var(--clr-white);
+}
+
+#back-btn {
+  color: var(--clr-cool-gray);
+  background-color: var(--clr-magnolia);
 }
 
 .err-msg {

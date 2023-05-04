@@ -2,7 +2,7 @@
   <div>
     <div class="info-page">
       <section class="personal-info">
-        <steps-comp />
+        <steps-comp stepNb="1" />
         <main>
           <h1>Personal info</h1>
           <p class="legend">Please provide your name, email address and phone number.</p>
@@ -62,6 +62,9 @@
 <script setup>
 import { ref } from 'vue';
 import StepsComp from '@/components/StepsComp.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const myForm = ref({
   name: '',
@@ -75,17 +78,24 @@ const errMsg = ref({
   phone: false,
 });
 
+const checkEmail = function () {
+  return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(
+    myForm.value.email
+  );
+};
+
 const submitForm = function () {
   if (myForm.value.name && myForm.value.email && myForm.value.phone) {
     Object.values(errMsg.value).forEach((val) => (val = false));
-    alert('OK');
+    // GO to form page 2
+    router.push({ name: 'plan' });
   }
   if (!myForm.value.name) {
     errMsg.value.name = true;
   } else {
     errMsg.value.name = false;
   }
-  if (!myForm.value.email) {
+  if (!checkEmail()) {
     errMsg.value.email = true;
   } else {
     errMsg.value.email = false;

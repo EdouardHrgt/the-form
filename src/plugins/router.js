@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   { path: '', name: 'info', component: () => import('@/views/InfoView.vue') },
-  { path: '/about', name: 'about', component: () => import('@/views/AboutView.vue') },
+  { path: '/select-plan', name: 'plan', component: () => import('@/views/PlanView.vue') },
+  { path: '/Add-on', name: 'add', component: () => import('@/views/AddOnsView.vue') },
 ];
 
 const router = createRouter({

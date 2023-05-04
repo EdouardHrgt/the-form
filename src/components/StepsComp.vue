@@ -2,13 +2,40 @@
   <div>
     <section class="steps">
       <ul>
-        <li class="list" v-for="step in steps" :key="step.nb">
-          <div class="ball">
-            <p>{{ step.nb }}</p>
+        <li class="list">
+          <div class="ball" :class="{ active: stepNb == 1 }">
+            <p>1</p>
           </div>
           <div class="step-txt">
-            <p class="step-number">step {{ step.nb }}</p>
-            <h2>{{ step.title }}</h2>
+            <p class="step-number">step 1</p>
+            <h2>your info</h2>
+          </div>
+        </li>
+        <li class="list">
+          <div class="ball" :class="{ active: stepNb == 2 }">
+            <p>2</p>
+          </div>
+          <div class="step-txt">
+            <p class="step-number">step 2</p>
+            <h2>select plan</h2>
+          </div>
+        </li>
+        <li class="list">
+          <div class="ball" :class="{ active: stepNb == 3 }">
+            <p>3</p>
+          </div>
+          <div class="step-txt">
+            <p class="step-number">step 3</p>
+            <h2>add-ons</h2>
+          </div>
+        </li>
+        <li class="list">
+          <div class="ball" :class="{ active: stepNb == 4 }">
+            <p>4</p>
+          </div>
+          <div class="step-txt">
+            <p class="step-number">step 4</p>
+            <h2>summary</h2>
           </div>
         </li>
       </ul>
@@ -18,12 +45,10 @@
 
 <script setup>
 import { ref } from 'vue';
-const steps = ref([
-  { title: 'your info', nb: 1 },
-  { title: 'select plan', nb: 2 },
-  { title: 'add-ons', nb: 3 },
-  { title: 'summary', nb: 4 },
-]);
+
+const props = defineProps({
+  stepNb: null,
+});
 </script>
 
 <style scoped>
@@ -51,8 +76,7 @@ const steps = ref([
   font-weight: var(--weight-3);
 }
 
-.ball-active {
-  /* WHEN STEP COMPLETED */
+.active {
   background-color: var(--clr-light-blue);
   border: none;
   color: var(--clr-marine-blue);
