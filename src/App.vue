@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <div class="app-page">
+    <div id="page">
       <router-view></router-view>
     </div>
   </div>

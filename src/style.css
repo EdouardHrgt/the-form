@@ -30,6 +30,24 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+#page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-magnolia);
+  min-height: 100dvh;
+}
+
+#my-form {
+  border-radius: 0.5rem;
+  background-color: var(--clr-white);
+  display: flex;
+  gap: 6rem;
+  width: 960px;
+  margin: auto;
+  padding: 1rem;
+}
+
 li {
   list-style: none;
 }

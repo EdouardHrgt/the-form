@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="info-page">
-      <section class="personal-info">
+      <section id="my-form">
         <steps-comp stepNb="1" />
         <main>
           <h1>Personal info</h1>
@@ -111,24 +111,6 @@ const submitForm = function () {
 <style scoped>
 .activeErr {
   border: 1px solid var(--clr-strawberry-red);
-}
-
-.info-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--clr-magnolia);
-  min-height: 100dvh;
-}
-
-.personal-info {
-  border-radius: 0.5rem;
-  background-color: var(--clr-white);
-  display: flex;
-  gap: 6rem;
-  width: 960px;
-  margin: auto;
-  padding: 1rem;
 }
 
 main {
