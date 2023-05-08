@@ -22,7 +22,12 @@
             </div>
           </div>
           <div class="add-on" :class="{ activeAddOn: storage }">
-            <input type="checkbox" name="larger-storage" id="larger-storage" v-model="storage" />
+            <input
+              type="checkbox"
+              name="larger-storage"
+              id="larger-storage"
+              v-model="largerStorage"
+            />
             <div class="add-on-txt">
               <div class="add-on-txt-title">
                 <h3>Larger storage</h3>
@@ -36,7 +41,7 @@
               type="checkbox"
               name="customizable-profile"
               id="customizable-profile"
-              v-model="profile"
+              v-model="Customprofile"
             />
             <div class="add-on-txt">
               <div class="add-on-txt-title">
@@ -64,11 +69,18 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const onlineServive = ref(false);
-const storage = ref(false);
-const profile = ref(false);
+const largerStorage = ref(false);
+const Customprofile = ref(false);
 
 function submitForm() {
-  console.log(onlineServive.value, storage.value, profile.value);
+  const storage = {
+    service: onlineServive.value,
+    storage: largerStorage.value,
+    profile: Customprofile.value,
+  };
+
+  localStorage.setItem('ADD-ON', JSON.stringify(storage));
+  router.push({ name: 'finishing' });
 }
 
 function previousPage() {
@@ -134,5 +146,22 @@ input[type='checkbox'] {
 .activeAddOn {
   background-color: var(--clr-magnolia);
   border: 2px solid var(--clr-purplish-blue);
+}
+@media screen and (max-width: 800px) {
+  main {
+    background-color: var(--clr-white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: -5rem auto 0;
+    width: 90%;
+  }
+  .add-on {
+    margin: 2rem auto;
+    width: 80%;
+  }
+  .btns {
+    margin: auto;
+    width: 80%;
+  }
 }
 </style>

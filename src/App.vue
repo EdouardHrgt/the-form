@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+/* 
+LOCAL STORAGE :
+const basket = JSON.parse(localStorage.getItem("BASKET"));
+localStorage.setItem("BASKET", JSON.stringify(basket));
+
+
+*/
+</script>
 
 <template>
   <div>
@@ -7,6 +15,8 @@
     </div>
   </div>
 </template>
+
+
 
 <style scoped>
 </style>

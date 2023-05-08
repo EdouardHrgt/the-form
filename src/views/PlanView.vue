@@ -10,24 +10,27 @@
             <li :class="{ activeList: plan == 0 }" @click="plan = 0">
               <img src="../assets/icon-arcade.svg" alt="Select arcade plan" />
               <h3>Arcade</h3>
-              <p class="plan-list-txt">$9/mo</p>
+              <p class="plan-list-txt">${{ price.arcade }}/mo</p>
+              <p class="plan-list-promo" v-if="price.promo.length">{{ price.promo }}</p>
             </li>
 
             <li :class="{ activeList: plan == 1 }" @click="plan = 1">
               <img src="../assets/icon-advanced.svg" alt="Select advanced plan" />
               <h3>Advanced</h3>
-              <p class="plan-list-txt">$12/mo</p>
+              <p class="plan-list-txt">${{ price.advanced }}/mo</p>
+              <p class="plan-list-promo" v-if="price.promo.length">{{ price.promo }}</p>
             </li>
 
             <li :class="{ activeList: plan == 2 }" @click="plan = 2">
               <img src="../assets/icon-pro.svg" alt="Select pro plan" />
               <h3>Pro</h3>
-              <p class="plan-list-txt">$15/mo</p>
+              <p class="plan-list-txt">${{ price.pro }}/mo</p>
+              <p class="plan-list-promo" v-if="price.promo.length">{{ price.promo }}</p>
             </li>
           </ul>
           <div class="montly-yearly">
             <p class="month-year-p" :class="{ activeTxt: !switcher }">Monthly</p>
-            <div class="switcher" @click="switcher = !switcher">
+            <div class="switcher" @click="switchDuration()">
               <div class="switcher-ball" :class="{ active: switcher }"></div>
             </div>
             <p class="month-year-p" :class="{ activeTxt: switcher }">Yearly</p>
@@ -48,11 +51,35 @@ import StepsComp from '@/components/StepsComp.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const switcher = ref(false);
+let switcher = ref(false);
 let plan = ref(0);
 
+let price = ref({ name: 'monthly', arcade: 9, advanced: 12, pro: 15, promo: '' });
+
+const switchDuration = function () {
+  if (switcher.value == true) {
+    switcher.value = false;
+    price = { name: 'monthly', arcade: 9, advanced: 12, pro: 15, promo: '' };
+  } else if (switcher.value == false) {
+    switcher.value = true;
+    price = { name: 'yearly', arcade: 90, advanced: 120, pro: 150, promo: '2 months free' };
+  }
+};
+
 const submitForm = function () {
-  console.log(plan.value, switcher.value);
+  let setDuration = null;
+
+  if (switcher.value) {
+    setDuration = 'Yearly';
+  } else {
+    setDuration = 'Monthly';
+  }
+  const storage = {
+    plan: plan.value,
+    duration: setDuration,
+  };
+
+  localStorage.setItem('PLAN', JSON.stringify(storage));
   router.push({ name: 'add' });
 };
 
@@ -147,5 +174,35 @@ li img {
 
 .activeTxt {
   color: var(--clr-marine-blue);
+}
+
+.plan-list-promo {
+  font-size: var(--p-size-s);
+  color: var(--clr-marine-blue);
+  font-weight: var(--weight-3);
+  margin-top: -0.3rem;
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    background-color: var(--clr-white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: -5rem auto 0;
+    width: 90%;
+  }
+  .plan-list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  li {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  .btns {
+    margin: auto;
+    width: 80%;
+  }
 }
 </style>

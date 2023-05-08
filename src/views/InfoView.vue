@@ -49,7 +49,7 @@
                 :class="{ activeErr: errMsg.phone }"
               />
             </div>
-            <div class="form-group">
+            <div class="form-group btn-wrapper">
               <input type="submit" value="Next Step" id="submit-btn" />
             </div>
           </form>
@@ -85,11 +85,19 @@ const checkEmail = function () {
 };
 
 const submitForm = function () {
-  if (myForm.value.name && myForm.value.email && myForm.value.phone) {
+  if (myForm.value.name && checkEmail() && myForm.value.phone) {
+    const storage = {
+      name: myForm.value.name,
+      email: myForm.value.email,
+      phone: myForm.value.phone,
+    };
+
+    localStorage.setItem('INFOS', JSON.stringify(storage));
+
     Object.values(errMsg.value).forEach((val) => (val = false));
-    // GO to form page 2
     router.push({ name: 'plan' });
   }
+
   if (!myForm.value.name) {
     errMsg.value.name = true;
   } else {
@@ -162,6 +170,25 @@ input::placeholder {
   .personal-info {
     gap: 2rem;
     width: 95%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    background-color: var(--clr-white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: -5rem auto 0;
+    width: 90%;
+  }
+  .form-group {
+    margin: 2rem 0;
+  }
+  .btn-wrapper {
+    text-align: end;
+  }
+  #submit-btn {
+    position: static;
   }
 }
 </style>
